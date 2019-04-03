@@ -1,5 +1,6 @@
 #ifndef _QUEEN_H_
 #define _QUEEN_H_
+#include <iostream>
 
 using namespace std;
 
@@ -17,28 +18,27 @@ class Queen {
 
         //x == number of queens
         bool queenPlace(int x, int y) {
-            if(x == 9) {
+            cout << x << " " << y << endl;
+            if(x == 8) {
                 return true;
             }
             if(!isQueenValid(x,y)) {
-                return false
-            }
-
-
-            
-            /*
-            if(board[x][y] == '0'){
-                //loop through and mark where the queen covers with 1
+                cout << "Queen is not valid" << endl;
+                return false;
+            } else {
                 board[x][y] = 'Q';
-                return true
-            } else {//if(board[x][y]!=) 
-                if(x==8) {
-                    return queenPlace(0,y+1);
-                } else {
-                    return queenPlace(x+1,y);
-                }
+                printBoard();
             }
-            */
+            //queenPlace(x+1, r);
+
+            int r=0;
+            while(r!=8) {
+                if(!queenPlace(x+1, r))
+                    r++;
+            }
+            if(r>7) {
+                return false;
+            }
 
         }
 
@@ -52,16 +52,26 @@ class Queen {
         }
 
         bool isQueenValid(int x, int y) {
-            int tempx = x;
-            int tempy = y;
             for(int i = 0; i<8; i++) {
                 if(board[x][i] == 'Q' || board[i][y] == 'Q') {
-                    return false
-                } 
-                if(x==0) {
-                      
+                    return false;
+                }
+                if(x-i!=x && y-i!=y) {
+                    if(x-i>-1 && y-i>-1 && board[x-i][y-i] == 'Q') { cout << "return from 1" << endl; return false; }
+                    if(x+i<8 && y-i>-1 && board[x+i][y-i] == 'Q') { cout << "return from 2" << endl; return false; }
+                    if(x-i>-1 && y+i<8 && board[x-i][y+i] == 'Q') { cout << "return from 3" << endl; return false; }
+                    if(x+i<8 && y+i<8 && board[x+i][y+i] == 'Q') { cout << "return from 4" << endl; return false; }
                 }
             }
+            return true;
+
+            
+            
+        }
+        
+        //each time the queen thing gets popped off, this deletes the row with zero.  Thus resetting the board
+        void replaceCol(int x) {
+
         }
 };
 
