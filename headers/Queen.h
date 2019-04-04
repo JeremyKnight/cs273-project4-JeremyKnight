@@ -17,9 +17,11 @@ class Queen {
         }
 
         //x == number of queens
+        //I am basically done, but there is one bug where the program deosn't exit out of the recursion.  I'mm kinda stuck.
         bool queenPlace(int x, int y) {
-            cout << x << " " << y << endl;
+            //cout << x << " " << y << endl;
             if(x == 8) {
+                cout << "hello" << endl;
                 return true;
             }
             if(!isQueenValid(x,y)) {
@@ -27,16 +29,18 @@ class Queen {
                 return false;
             } else {
                 board[x][y] = 'Q';
+                cout << "is it" << endl;
                 printBoard();
             }
-            //queenPlace(x+1, r);
-
+            cout << "me" << endl;
             int r=0;
             while(r!=8) {
                 if(!queenPlace(x+1, r))
                     r++;
             }
+            cout << "looking for?" << endl;
             if(r>7) {
+                replaceCol(x);
                 return false;
             }
 
@@ -57,10 +61,10 @@ class Queen {
                     return false;
                 }
                 if(x-i!=x && y-i!=y) {
-                    if(x-i>-1 && y-i>-1 && board[x-i][y-i] == 'Q') { cout << "return from 1" << endl; return false; }
-                    if(x+i<8 && y-i>-1 && board[x+i][y-i] == 'Q') { cout << "return from 2" << endl; return false; }
-                    if(x-i>-1 && y+i<8 && board[x-i][y+i] == 'Q') { cout << "return from 3" << endl; return false; }
-                    if(x+i<8 && y+i<8 && board[x+i][y+i] == 'Q') { cout << "return from 4" << endl; return false; }
+                    if(x-i>-1 && y-i>-1 && board[x-i][y-i] == 'Q') { return false; }
+                    if(x+i<8 && y-i>-1 && board[x+i][y-i] == 'Q') { return false; }
+                    if(x-i>-1 && y+i<8 && board[x-i][y+i] == 'Q') { return false; }
+                    if(x+i<8 && y+i<8 && board[x+i][y+i] == 'Q') { return false; }
                 }
             }
             return true;
@@ -71,7 +75,9 @@ class Queen {
         
         //each time the queen thing gets popped off, this deletes the row with zero.  Thus resetting the board
         void replaceCol(int x) {
-
+            for(int y = 0; y<8; y++) {
+                board[x][y] = '0';
+            }
         }
 };
 
