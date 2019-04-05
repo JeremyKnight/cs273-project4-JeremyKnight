@@ -21,25 +21,21 @@ class Queen {
         bool queenPlace(int x, int y) {
             //cout << x << " " << y << endl;
             if(x == 8) {
-                cout << "hello" << endl;
                 return true;
             }
             if(!isQueenValid(x,y)) {
-                cout << "Queen is not valid" << endl;
                 return false;
             } else {
                 board[x][y] = 'Q';
-                cout << "is it" << endl;
-                printBoard();
             }
-            cout << "me" << endl;
             int r=0;
             while(r!=8) {
                 if(!queenPlace(x+1, r))
                     r++;
+                else 
+                    return true;
             }
-            cout << "looking for?" << endl;
-            if(r>7) {
+            if(r>=8) {
                 replaceCol(x);
                 return false;
             }

@@ -54,7 +54,7 @@ class BlobDetection {
                 //for()
             } 
 
-            if(arr[x]][y] == num) {
+            if(arr[x][y] == num) {
                 //return true;
             } 
 
