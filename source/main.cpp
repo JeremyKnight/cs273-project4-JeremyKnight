@@ -7,17 +7,21 @@ using namespace std;
 
 int main() {
     
+    cout << "Queen problem:" << endl;
     Queen q= Queen();
     if(q.queenPlace(0,0)) {
-        cout << "this worked" << endl;
+        q.printBoard();
     }
-    q.printBoard();
     
-    /*
+    
+    cout << endl;
+
+    cout << "blob detection problem:" << endl;
     //string file name:
     string fileName = "C:/Users/jknight22/desktop/cs273-project4-JeremyKnight/blob_test.txt";
     BlobDetection blob = BlobDetection(fileName);
+    blob.findBlobs();
     blob.printArray();
-    */
+    
     return 1;
 }
